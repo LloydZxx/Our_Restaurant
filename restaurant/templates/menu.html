@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+<!--Menu Section-->
+<section class="menu-section">
+    {% for i in favheader %}
+    <h1>{{ i.title|safe }}</h1>
+    <p>{{ i.description|safe }}</p>
+     {% endfor %}
+    <div class="menu">
+    <div class="container swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                {% for i in favitem %}
+                <li class="card-item swiper-slide" >
+                    <a href="#" class="card-link">
+                        <img src="{{ i.image.url }}" alt="Card Image" class="card-img">
+                        <p class="badge">{{ i.tag|safe }}</p>
+                        <h2 class="card-title">{{ i.title|safe }}</h2>
+                        <button class="card-button">{{ i.btn|safe }}</button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+ 
+             <div class="swiper-pagination"></div>
+             <div class="swiper-slide-button swiper-button-prev"></div>
+             <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>
+
+    <!--Linking Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <!--Linking Custom JS -->
+    <script src="{% static 'js/menu.js' %}"></script>
+    </div>
+</section><hr>
+
+<section class="menu-grid">
+    <div class="grid-container">
+        {% for i in menu %}
+    <h2 class="grid-heading">{{ i.title|safe }}</h2>
+    {% endfor %}
+        <div class="box-container">
+            {% for i in latestmenu %}
+            <div class="box">
+                <img title="grid-image" src="{{ i.image.url }}">
+                <h3>{{ i.tag|safe }}</h3>
+                <p>{{ i.title|safe }}</p>
+                <a href="" class="grid-btn">{{ i.btn|safe }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</section>
+
+<!---feedback--->
+<section class="feedback">
+    {% for i in cusfeedback %}
+    <h1>{{ i.title|safe }}</h1>
+    <p>{{ i.description|safe }}</p>
+    {% endfor %}
+    <br><br>
+    <div class="row">
+        {% for i in feedback %}
+        <div class="feedback-col">
+            {% if i.image %}
+            <img title="cus1" src="{{ i.image.url }}">
+            {% endif %}
+            <div>
+                <p>{{ i.description|safe }}</p>
+               <div class="bottom-row">
+                    <h3>{{ i.name|safe }}</h3> 
+                    <form action="{% url 'feedbackdelete' i.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="review_btn" onclick="return confirm('delete...?')">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

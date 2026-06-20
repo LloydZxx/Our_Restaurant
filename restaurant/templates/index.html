@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% load static %}
+
+<!-- Hero Section -->
+<div class="hero">
+    {% for i in hero %}
+    <div class="row">
+        <div class="col">
+            {{ i.title|safe }}
+            {{ i.description|safe }}
+            <a href="{% url 'menupage' %}" class="btn">{{ i.btn|safe }}</a>
+        </div>
+        <div class="col">
+            <img src="{{ i.image.url }}" class="feature-img">
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!--Menu Section-->
+<section class="menu-section">
+    {% for i in special_header %}
+    <h1>{{ i.title|safe }}</h1>
+    <p>{{ i.description|safe }}</p>
+    {% endfor %}
+    <div class="menu">
+    <div class="container swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                {% for i in specialitem %}
+                <li class="card-item swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="{{ i.image.url }}" alt="Card Image" class="card-img">
+                        <p class="badge">{{ i.tag|safe }}</p>
+                        <h2 class="card-title">{{ i.title }}</h2>
+                        <button class="card-button">{{ i.btn }}</button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+ 
+             <div class="swiper-pagination"></div>
+             <div class="swiper-slide-button swiper-button-prev"></div>
+             <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>
+
+    <!--Linking Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+    <!--Linking Custom JS -->
+    <script src="{% static 'js/script.js' %}"></script>
+    </div>
+</section>
+
+<!--Our Services-->
+<section class="services">
+    {% for i in service_section %}
+    <h1>{{ i.title|safe }}</h1>
+    <p>{{ i.description|safe }}</p>
+    {% endfor %}
+    <div class="services-row">
+        {% for i in services %}
+        <div class="services-col">
+            <h3>{{ i.title|safe }}</h3>
+            <p>{{ i.description|safe }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!--Our Branches-->
+<section class="branches">
+    <h1>Our Global Braches</h1>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+    <br><br>
+    <div class="row">
+        {% for i in branches %}
+        <div class="branches-col">
+            <img title="ld" src="{{ i.image.url }}">
+            <div class="layer">
+                <h3>{{ i.title|safe }}</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

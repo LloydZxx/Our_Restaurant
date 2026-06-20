@@ -1,0 +1,18 @@
+<input type="checkbox" id="menu-toggle">
+<nav>
+    <a href="#" class="logo">RsT</a>
+
+    <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'menupage' %}">Menu</a></li>
+        <li><a href="{% url 'contactpage' %}">Contact</a></li>
+        <li><a href="{% url 'reviewpage' %}">Review</a></li>
+    </ul>
+
+    <form class="search-box">
+        <input type="text" placeholder="Search menu...">
+        <button type="submit">🔍</button>
+    </form>
+
+    <label for="menu-toggle" class="menu-btn">☰</label>
+</nav>
