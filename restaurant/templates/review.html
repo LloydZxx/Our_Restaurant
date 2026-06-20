@@ -2,7 +2,7 @@
 {% block body %}
 
 <style>
-    /* CSS Styling */
+    
     .form-container {
         max-width: 500px;
         margin: 40px auto;
@@ -49,7 +49,6 @@
         box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1);
     }
 
-    /* File Input Styling */
     .form-group input[type="file"] {
         width: 100%;
         padding: 10px;
@@ -60,7 +59,25 @@
         box-sizing: border-box;
     }
 
-    /* Submit Button Styling */
+    .preview-box {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 15px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid #e67e22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5f5f5;
+    }
+
+    .preview-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
     .submit-btn {
         width: 100%;
         padding: 14px;
@@ -81,13 +98,36 @@
     .submit-btn:active {
         transform: scale(0.98);
     }
+
+    @media (max-width: 600px) {
+        .form-container {
+            width: 90%;
+            padding: 20px;
+        }
+
+        .preview-box {
+            width: 90px;
+            height: 90px;
+        }
+
+        .form-title {
+            font-size: 20px;
+        }
+    }
 </style>
 
 <div class="form-container">
     <h1 class="form-title">Share Your Thoughts for Our Restaurant</h1>
-    
+
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
+        <div class="form-group">
+            <label>Preview</label>
+            <div class="preview-box">
+                <img id="previewImg" src="" alt="">
+            </div>
+        </div>
 
         <div class="form-group">
             <label for="name">Name</label>
@@ -101,11 +141,19 @@
 
         <div class="form-group">
             <label for="profile">Profile / Image</label>
-            <input type="file" id="profile" required name="image" accept="image/*">
+            <input type="file" id="profile" name="image" accept="image/*" onchange="loadFile(event)">
         </div>
 
         <button type="submit" class="submit-btn">Submit Feedback</button>
     </form>
 </div>
+
+<!-- JS -->
+<script>
+function loadFile(event) {
+    const image = document.getElementById('previewImg');
+    image.src = URL.createObjectURL(event.target.files[0]);
+}
+</script>
 
 {% endblock %}

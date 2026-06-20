@@ -35,7 +35,6 @@ nav .logo{
     color: #e6814e;
 }
 
-/* menu icon (hamburger) */
 .menu-btn{
     display: none;
     font-size: 30px;
@@ -45,12 +44,10 @@ nav .logo{
     position: relative;
 }
 
-/* hide checkbox */
 #menu-toggle{
     display: none;
 }
 
-/* desktop menu */
 nav ul{
     flex: 1;
     text-align: right;
@@ -403,7 +400,6 @@ nav ul li a:hover::before{
     }
 }
 
-/*--footer--*/
 .footer{
     width: 100%;
     text-align: center;
@@ -416,7 +412,6 @@ nav ul li a:hover::before{
     font-weight: 600;
 }
 
-/*--branches--*/
 .branches{
     width: 80%;
     margin: auto;
