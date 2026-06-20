@@ -19,7 +19,7 @@ new Swiper('.card-wrapper', {
   breakpoints: {
     0: {
         slidesPerView: 1.2,   
-        spaceBetween: 15,     
+        spaceBetween: 15, 
     },
     // Tablet
     768: {
